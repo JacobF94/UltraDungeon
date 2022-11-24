@@ -53,28 +53,5 @@ namespace ConsolePractice.Evil
         {
             return $"The monster {Name} is a {Description}!! It has {HP} health and {Str} attacking power.";
         }
-        public void MonsterEncounter(Player player, Monster monster)
-        {
-            monster.HP = player.Level * 10;
-            monster.Str = player.Level * 3;
-            monster.Speed = player.Level * 2;
-            Random rnd = new();
-            int PlayerHealth  = player.Health;
-            foreach (var item in player.Equipment)
-            {
-                PlayerHealth += item.Value;
-            }
-            Console.WriteLine($"{player.Name}'s total health is {PlayerHealth}");
-            Console.WriteLine($"{player.Name} readies his/her weapon and spells, and approaches {monster.Name}...");
-            int diceroll = rnd.Next(1, 6);
-            if (diceroll == 6)
-            {
-                Console.WriteLine("Aha! You manage to sneak up on the monster and launch a sneak attack!");
-                Console.WriteLine($"You deal roughly 10% damage to {monster.Name}...");
-                double sneak = monster.HP * .9;
-                monster.HP = (int)Math.Round(sneak);
-            };
-
-        }
     }
 }

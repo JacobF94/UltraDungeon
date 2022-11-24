@@ -23,7 +23,9 @@
             { 9, "Incredible"},
             { 10, "Ultimate"}
         };
-        public Dictionary<string, int> Equipment = new Dictionary<string, int>();
+        public List<Armor> Armors = new List<Armor>();
+        public List<Spell> Spells = new List<Spell>();
+        public List<Weapon> Weapons = new List<Weapon>();
         public Player(string name)
         {
             Name = name;
