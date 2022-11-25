@@ -1,6 +1,5 @@
 ﻿using ConsolePractice.Evil;
 using Game;
-using System.Linq.Expressions;
 
 Console.WriteLine("     ############################");
 Console.WriteLine("     ## ULTIMATE DUNGEON QUEST ##");
@@ -16,10 +15,13 @@ while(string.IsNullOrEmpty(name))
     name = Console.ReadLine();
 }
 Player player = new(name);
+player.Spells.Add(new Spell());
 Console.WriteLine(player.GetPlayerStatus());
 Console.WriteLine();
+int turnCounter = 0;
 while (player.Health > 0)
 {
+    turnCounter++;
     Monster monster = new Monster();
     monster.HP = player.Level * 10;
     monster.Str = player.Level * 3;
@@ -39,7 +41,7 @@ while (player.Health > 0)
         Console.WriteLine($"You deal roughly 10% damage to {monster.Name}...");
         double sneak = monster.HP * .9;
         monster.HP = (int)Math.Round(sneak);
-    };
+    }
     while (monster.HP > 0)
     {
         BeginPhase:
@@ -50,6 +52,7 @@ while (player.Health > 0)
             Console.WriteLine("[1] Weapon  [2] Spell");
             try
             {
+                bool v = new int[] { 1, 2 }.Contains(Convert.ToInt32(Console.ReadLine()));
                 attack = Convert.ToInt32(Console.ReadLine());
             }
             catch

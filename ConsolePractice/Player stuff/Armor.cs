@@ -2,13 +2,24 @@
 {
     public class Armor
     {
-        //Thinking I'll have two dictionaries - both have the item's name as the key and the two values will be armor type and then how much it increases player HP
-        //Alternatively I could do a generic class for armor and then the consructor accepts all paramters which are somehow generated beforehand, but IDK
-        //The first solution gives greater control with less ease of expansion, but imo easier to implement?
-
-        public string Name { get; set; }
         public string Description { get; set; }
         public int Value { get; set; }
         public int Cost { get; set; }
+        private SortedDictionary<string, int> Types = new()
+        {
+            {"Leather", 3 },
+            {"Iron", 5},
+            {"Plate Mail", 10},
+            {"Tempered",20 },
+            {"Legendary", 50}
+        };
+        public Armor()
+        {
+            Random seed = new();
+            int newType = seed.Next(1, 5);
+            Description = Types.ElementAt(newType).Key;
+            Value = Types.ElementAt(newType).Value;
+            Cost = Value * 2;
+        }
     }
 }
